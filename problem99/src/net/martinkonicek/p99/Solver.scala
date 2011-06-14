@@ -1,4 +1,4 @@
-package net.martinkonicek.p99
+/*package net.martinkonicek.p99
 
 class Solver(crossword:Crossword) {
 	
@@ -68,6 +68,7 @@ class Solver(crossword:Crossword) {
 		}
 	}
 }
+*/
 
 // fail fast:
 		// always prefer lines with least candidates.

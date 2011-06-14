@@ -2,9 +2,9 @@ package net.martinkonicek.p99
 
 class Cell {
 	
-	var char:Character = '.'
+	var char: Character = '.'
 	  
-	def isEmpty = char != '.'
+	def isEmpty = char == '.'
 	  
 	def clear = { char = '.' }
 }

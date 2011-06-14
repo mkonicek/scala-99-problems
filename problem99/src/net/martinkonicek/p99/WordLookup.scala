@@ -1,6 +1,6 @@
-package net.martinkonicek.p99
+/*package net.martinkonicek.p99
 
-// STORE STRING EVERYWHERE, then try to switch to ints (indexes into global string array)
+// STORE STRINGS EVERYWHERE, then try to switch to ints (indexes into global string array)
 // to see the speedup
 
 class WordLookup(words:Seq[String]) {
@@ -35,4 +35,4 @@ class WordLookup(words:Seq[String]) {
 	def initCharPosLookup(words:Seq[String]) = {
 		
 	}*/
-}
+}*/
