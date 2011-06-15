@@ -8,14 +8,14 @@ object Crossword {
 	}
 }
 
-class Crossword(words:List[String], segs:List[Segment], matrix:Array[Array[Cell]]) {
+class Crossword(words:List[String], segments:List[Segment], matrix:Array[Array[Cell]]) {
 	
 	def this(words:Iterable[String], segs:Iterable[Segment], matrix:Array[Array[Cell]]) = 
 		this(words.toList, segs.toList, matrix)
 	
 	def print() = {
 		var i = 97
-		for (val s <- segs) {
+		for (val s <- segments) {
 			s.cells.foreach(c => c.char = i.toChar)
 			s.intersections.foreach(t => t.owner.cells(t.ownerPos).char = 'x')
 			i += 1
