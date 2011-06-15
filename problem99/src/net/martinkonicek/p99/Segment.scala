@@ -6,11 +6,13 @@ class Segment(val cells: List[Cell]) {
 	
 	def this(cells: Iterable[Cell]) = this(cells.toList)
 	
-	def length() = cells.length
+	def length = cells.length
+	
+	def word = cells.map(_.char).mkString
 	
 	val intersections: ArrayBuffer[Intersection] = ArrayBuffer[Intersection]()
 	
-	def intersectingLines() = intersections.map(_.target)
+	def intersectingLines = intersections.map(_.target)
 	
 	def addIntersection(index: Int, otherSegment: Segment) = {
 		val cell = this.cells(index)

@@ -13,7 +13,7 @@ class WordLookup(words: List[String]) {
   		wordsByLength(segment.length).filter(word =>
 			segment.intersections.forall(i => i.isEmpty || i.char == word(i.pos))
 		)
-		// narrow down line's candidates by matching them to newly filled cells
+		// narrow down segment's candidates by matching them to newly filled cells
 		//line.candidates.intersectSorted(line.intersections.map(i =>
 		//    charPosLookup(i.pos)(i.char)))
 	}
