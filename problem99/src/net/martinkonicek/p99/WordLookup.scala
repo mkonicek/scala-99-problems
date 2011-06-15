@@ -1,20 +1,18 @@
-/*package net.martinkonicek.p99
+package net.martinkonicek.p99
 
 // STORE STRINGS EVERYWHERE, then try to switch to ints (indexes into global string array)
 // to see the speedup
 
-class WordLookup(words:Seq[String]) {
+class WordLookup(words: List[String]) {
 	// array indexed by character?
 	//val charPosLookup = initCharPosLookup(words)
-	// HOW TO MAKE CONSTRUCTOR TAKING SOME PARAMETERS AND FILLING SOME NEW FIELDS?
-	//val wordArray = words.toArray
+  
+  	val wordsByLength = words.groupBy(_.length)
 	
-	def getMatchingWords(line:Line):Seq[String] = {
-		line.candidates.filter(candidate => {
-			// this could be optimized by checking only one intersection
-			// if we know it has just changed
-			line.intersections.all(i => candidate(i.pos) == i.char)
-		})
+	def getMatchingWords(segment: Segment) = {
+  		wordsByLength(segment.length).filter(word =>
+			segment.intersections.forall(i => i.isEmpty || i.char == word(i.pos))
+		)
 		// narrow down line's candidates by matching them to newly filled cells
 		//line.candidates.intersectSorted(line.intersections.map(i =>
 		//    charPosLookup(i.pos)(i.char)))
@@ -35,4 +33,4 @@ class WordLookup(words:Seq[String]) {
 	def initCharPosLookup(words:Seq[String]) = {
 		
 	}*/
-}*/
+}
