@@ -5,11 +5,12 @@ import scala.io.Source
 object CrosswordSolver {
 	def main(args : Array[String]) = {
 	  
-		val crossword = Crossword.loadFromFile("input\\p99d.dat")
-		crossword.words.foreach(println)
-		crossword.print
+		val crossword = Crossword.loadFromFile("input\\p99b.dat")
+		//crossword.words.foreach(println)
+		//crossword.print
 		
-		new Solver(crossword).solve match {
+		val solver = new Solver(crossword, isDebugOutput = true)
+		solver.solve match {
 			case Some(solution) => {
 				solution.print
 				verify(solution.crossword)

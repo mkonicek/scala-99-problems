@@ -12,7 +12,7 @@ class Segment(val cells: List[Cell]) {
 	
 	val intersections: ArrayBuffer[Intersection] = ArrayBuffer[Intersection]()
 	
-	def intersectingLines = intersections.map(_.target)
+	def intersectingSites = intersections.map(_.target)
 	
 	def addIntersection(index: Int, otherSegment: Segment) = {
 		val cell = this.cells(index)
