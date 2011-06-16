@@ -20,7 +20,7 @@ class Loader(fileName:String) {
 	/** Reads the input into a two-dimensional array
 	 *  which contains Cells at the positions where the input contained dots.
 	 */
-	def readPlan(input: Iterator[String]): Array[Array[Cell]] = {
+	private def readPlan(input: Iterator[String]): Array[Array[Cell]] = {
 		val inputLines = input.toList
 		val matrix = Array.ofDim[Cell](inputLines.length, inputLines(0).length)
 		for (val i <- 0 until inputLines.length) {
@@ -36,7 +36,7 @@ class Loader(fileName:String) {
 	 *  (i.e. horizontal & vertical Segments with Intersections) 
 	 *  from the from the input matrix.
 	 */
-	def buildSegments(matrix: Array[Array[Cell]]): List[Segment] = {
+	private def buildSegments(matrix: Array[Array[Cell]]): List[Segment] = {
 		val crosswordSegments = new ListBuffer[Segment]
 		for (val horizontalLine <- matrix) {
 			crosswordSegments ++= getSegments(horizontalLine)
@@ -48,19 +48,23 @@ class Loader(fileName:String) {
 		return crosswordSegments.toList
 	}
 	
-	def getColumns(matrix: Array[Array[Cell]]): Iterable[Iterable[Cell]] = {
+	/** Iterates over columns of the matrix. */
+	private def getColumns(matrix: Array[Array[Cell]]): Iterable[Iterable[Cell]] = {
 		for (val i <- 0 until matrix(0).length)
 			yield getColumn(i, matrix)
 	}
-	
-	def getColumn(j: Int, matrix: Array[Array[Cell]]): Iterable[Cell] = {
+	private def getColumn(j: Int, matrix: Array[Array[Cell]]): Iterable[Cell] = {
 		for (val i <- 0 until matrix.length)
 			yield matrix(i)(j)
 	}
 	
-	/** Finds where Segments intersect and adds Intersections to them.
-	 */
-	def fillIntersections(segs: Iterable[Segment]) = {
+	/** Splits line of Cells into continuous Segments. */
+	private def getSegments(cellLine: Iterable[Cell]): List[Segment] = {
+		Utils.splitSegments(cellLine, null).filter(_.length > 1).map(new Segment(_)).toList
+	}
+	
+	/** Adds Cells where Segments intersect as Intersections. */
+	private def fillIntersections(segs: Iterable[Segment]) = {
 		// List(seg,cell,index) -> List(cell,List(seg,cell,index))
 	  	val grouped = indexedCells(segs).toList.groupBy(_._2).toList
 	  	assert(grouped.count(_._2.length > 2) == 0)
@@ -69,17 +73,15 @@ class Loader(fileName:String) {
 	  		val (seg, cell, index) = segCellIdxList(0)
 	  		val (seg2, cell2, index2) = segCellIdxList(1)
 	  		assert(cell == cell2)
+	  		// add mutual intersection
 	  		seg.addIntersection(index, seg2)
 	  		seg2.addIntersection(index2, seg)
 	  	}
 	}
 	
-	def indexedCells(segs: Iterable[Segment]) = {
+	/** Given Segments, returns triples (Segment, Cell, index_of_Cell_in_that_Segment) */
+	private def indexedCells(segs: Iterable[Segment]) = {
 		for (val seg <- segs; val cellIdx <- seg.cells.zipWithIndex)
 			yield (seg, cellIdx._1, cellIdx._2)
-	}
-	
-	def getSegments(cellLine: Iterable[Cell]): List[Segment] = {
-		Utils.splitSegments(cellLine, null).filter(_.length > 1).map(new Segment(_)).toList
 	}
 }

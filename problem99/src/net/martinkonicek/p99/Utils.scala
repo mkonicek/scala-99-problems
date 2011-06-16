@@ -2,11 +2,9 @@ package net.martinkonicek.p99
 
 import scala.collection.mutable.ListBuffer
  
-// Cannot use pimp-my-library?
+// pimp-my-library?
 // http://stackoverflow.com/questions/5410846/how-do-i-apply-the-pimp-my-library-pattern-to-scala-collections
 object Utils {
-	//implicit def iterableExtensions[T](xs : Iterable[T]) = new IterableExtensions(xs)
-  
 	/** Splits a collection into continuous segments separated by 
 	 *  continuous segments of separators.
 	 *  {{{
@@ -24,5 +22,3 @@ object Utils {
 		splits.toList
 	}
 }
- 
-//class IterableExtensions[T](xs: Iterable[T]) {
