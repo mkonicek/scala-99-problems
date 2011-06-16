@@ -1,14 +1,14 @@
 Solution of the Problem 99 from http://aperiodic.net/phil/scala/s-99/
 
 The algorithm is backtracking with a simple observation:
-- for some segments, there is only one option (one word of suitable lenght) -> place it immediately
+- for some segments, there is only one option (one word of suitable length) -> place it immediately
 - when there are more options, try the segments with least options first
 
 Such heuristic is enough for the algorithm to solve the sample problems almost without backtracking.
-Try running "crosswordsolver input/p99d.dat -debug" to see the progress.
+Try running "crosswordsolver input/p99d.dat -debug" to progress of the algorithm.
 
 There are quite a few opportunities for optimization (searching more branches in parallel would be fun!), 
-but even this solves all the sample problems under 60ms on my machine.
+but even this solves all the sample problems under 60ms on my laptop.
 
 
 Overview:
