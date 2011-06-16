@@ -1,0 +1,27 @@
+Solution of the Problem 99 from http://aperiodic.net/phil/scala/s-99/
+
+The algorithm is backtracking with a simple observation:
+- for some segments, there is only one option (one word of suitable lenght) -> place it immediately
+- when there are more options, try the segments with least options first
+
+Such heuristic is enough for the algorithm to solve the sample problems almost without backtracking.
+Try running "crosswordsolver input/p99d.dat -debug" to see the progress.
+
+There are quite a few opportunities for optimization (searching more branches in parallel would be fun!), 
+but even this solves all the sample problems under 60ms on my machine.
+
+
+Overview:
+
+The representation of the crossword is the following:
+
+- Each 'dot' in the crossword is represented by one Cell.
+- Each line to put a word in is represented by a Segment.
+- A Segment has Intersections which tell with which other Segments it intersects (useful for Solver).
+- Crossword is:
+  - a collection of Segments
+  - a collection of input words
+  - a 2d matrix of Cells holding the layout of the crossword (for printing)
+
+Loader builds the Crossword from the input file.
+Solver gets an empty crossword and returns a Solution containing filled crossword, or None if there is no solution.

@@ -1,25 +1,20 @@
 package net.martinkonicek.p99
 
-import scala.collection.mutable.ArrayBuffer
-
 object Crossword {
+	/** Reads the Crossword from an input file (see the 'input' folder for examples). */
 	def loadFromFile(fileName:String) = {
 		new Loader(fileName).load()
 	}
 }
 
+/** Represents the input and output. */
 class Crossword(val words:List[String], val segments:List[Segment], matrix:Array[Array[Cell]]) {
 	
-	def this(words:Iterable[String], segs:Iterable[Segment], matrix:Array[Array[Cell]]) = 
+	def this(words: Iterable[String], segs: Iterable[Segment], matrix: Array[Array[Cell]]) = 
 		this(words.toList, segs.toList, matrix)
 	
+	/** Prints this Crossword to standard output, in the 'input file' format. */
 	def print() = {
-		/*var i = 97
-		for (val s <- segments) {
-			s.cells.foreach(c => c.char = i.toChar)
-			s.intersections.foreach(t => t.owner.cells(t.pos).char = 'x')
-			i += 1
-		}*/
 		matrix.foreach(matrixLine =>
 			println(matrixLine.map(cell => if (cell == null) " " else cell.char).mkString)
 		)
