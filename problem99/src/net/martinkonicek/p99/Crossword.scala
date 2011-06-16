@@ -7,7 +7,6 @@ object Crossword {
 	}
 }
 
-/** Represents the input and output. */
 class Crossword(val words:List[String], val segments:List[Segment], matrix:Array[Array[Cell]]) {
 	
 	def this(words: Iterable[String], segs: Iterable[Segment], matrix: Array[Array[Cell]]) = 
