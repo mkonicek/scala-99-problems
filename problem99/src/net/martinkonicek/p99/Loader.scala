@@ -5,10 +5,10 @@ import scala.collection._
 import scala.io._
 import Utils._
 
-/** Reads the Crossword from input file. */
+/** Reads the Crossword from an input file. */
 class Loader(fileName:String) {
     
-    /** Reads the Crossword from input file. */
+    /** Reads the Crossword from an input file. */
 	def load(): Crossword = {
 		val fileLines = Source.fromFile(fileName).getLines
 		val words = fileLines.takeWhile(_ != "").toList

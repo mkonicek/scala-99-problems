@@ -2,7 +2,7 @@ package net.martinkonicek.p99
 
 import scala.collection.mutable.ArrayBuffer
 
-/** Represents one line in the crossword to put a word in. */
+/** One line in the crossword to place a word in. */
 class Segment(val cells: List[Cell]) {
 	
 	def this(cells: Iterable[Cell]) = this(cells.toList)

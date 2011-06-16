@@ -5,7 +5,7 @@ The algorithm is backtracking with a simple observation:
 - when there are more options, try the segments with least options first
 
 Such heuristic is enough for the algorithm to solve the sample problems almost without backtracking.
-Try running "crosswordsolver input/p99d.dat -debug" to progress of the algorithm.
+Try running "crosswordsolver input/p99d.dat -debug" to see the progress of the algorithm.
 
 There are quite a few opportunities for optimization (searching more branches in parallel would be fun!), 
 but even this solves all the sample problems under 60ms on my laptop.
